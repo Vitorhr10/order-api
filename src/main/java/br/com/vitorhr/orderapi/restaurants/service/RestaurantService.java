@@ -43,10 +43,12 @@ public class RestaurantService {
     }
 
     public void deleteRestaurantsById(Long id) {
+        if(id  == null || id == 0) throw new BadRequestException("O identificador do restaurante é obrigatório.");
         restaurantRepository.deleteById(id);
     }
 
     public RestaurantEntity updateRestaurantById(Long id, UpdateResquestRestaurantDto dto) {
+        if(id  == null || id == 0) throw new BadRequestException("O identificador do restaurante é obrigatório.");
         RestaurantEntity restaurant = findRestaurantsById(id);
         restaurant.updateFromDto(dto);
         return restaurantRepository.save(restaurant);

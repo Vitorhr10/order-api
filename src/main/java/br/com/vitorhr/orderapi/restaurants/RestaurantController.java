@@ -42,7 +42,7 @@ public class RestaurantController {
     }
 
     @PatchMapping("/{id}")
-    public RestautantResponseDto updateRestaurantById(@PathVariable Long id, @RequestBody UpdateResquestRestaurantDto dto) {
+    public RestautantResponseDto updateRestaurantById(@PathVariable Long id, @RequestBody @Valid UpdateResquestRestaurantDto dto) {
         return new RestautantResponseDto(restaurantService.updateRestaurantById(id, dto));
     }
 }
