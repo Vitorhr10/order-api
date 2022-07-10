@@ -2,8 +2,8 @@ package br.com.vitorhr.orderapi.restaurants;
 
 import br.com.vitorhr.orderapi.restaurants.dto.request.CreateRestautantRequestDto;
 import br.com.vitorhr.orderapi.restaurants.dto.response.RestautantResponseDto;
-import br.com.vitorhr.orderapi.restaurants.entity.RestaurantEntity;
 import br.com.vitorhr.orderapi.restaurants.service.RestaurantService;
+import br.com.vitorhr.orderapi.util.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,5 +32,11 @@ public class RestaurantController {
     @GetMapping("/{id}")
     public RestautantResponseDto findRestaurantsById(@PathVariable Long id) {
         return new RestautantResponseDto(restaurantService.findRestaurantsById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteRestaurantsById(@PathVariable Long id) {
+        restaurantService.deleteRestaurantsById(id);
     }
 }

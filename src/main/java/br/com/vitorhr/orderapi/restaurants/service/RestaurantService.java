@@ -7,13 +7,12 @@ import br.com.vitorhr.orderapi.restaurants.repository.RestaurantRepository;
 import br.com.vitorhr.orderapi.util.exception.BadRequestException;
 import br.com.vitorhr.orderapi.util.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,7 +40,11 @@ public class RestaurantService {
 
     public RestaurantEntity findRestaurantsById(Long id) {
         if(id  == null || id == 0) throw new BadRequestException("O identificador do restaurante é obrigatório.");
-        return restaurantRepository.findById(id).orElseThrow(() -> new NotFoundException( "ID não encontrado na base de dados"));
+        return restaurantRepository.findById(id).orElseThrow(() -> new NotFoundException( "Restaurante não encontrado."));
+    }
+
+    public void deleteRestaurantsById(Long id) {
+        restaurantRepository.deleteById(id);
     }
 
 }
