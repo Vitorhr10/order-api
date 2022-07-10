@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RestautantResponseDto {
+    private Long id;
     private String name;
     private String openingHours;
     private Long zipCodeAddress;
@@ -20,6 +21,7 @@ public class RestautantResponseDto {
     private String phone;
 
     public RestautantResponseDto(RestaurantEntity restaurant) {
+        this.id = restaurant.getId();
         this.name = restaurant.getName();
         this.openingHours = restaurant.getOpeningHours();;
         this.zipCodeAddress = restaurant.getZipCodeAddress();
