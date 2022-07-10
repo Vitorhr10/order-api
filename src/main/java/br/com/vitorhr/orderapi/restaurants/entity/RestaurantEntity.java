@@ -23,9 +23,6 @@ public class RestaurantEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "opening_hours")
-    private String openingHours;
-
     @Column(name = "zip_code_address")
     private Long zipCodeAddress;
 
@@ -41,6 +38,12 @@ public class RestaurantEntity {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "status")
+    private Integer status;
+
+    @Column(name = "open")
+    private Integer open;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -50,12 +53,13 @@ public class RestaurantEntity {
     @JsonIgnore
     public void updateFromDto(UpdateResquestRestaurantDto dto) {
         this.name = dto.getName();
-        this.openingHours = dto.getOpeningHours();
         this.zipCodeAddress = dto.getZipCodeAddress();
         this.streetAddress = dto.getStreetAddress();
         this.additionalAddress = dto.getAdditionalAddress();
         this.neighborhoodAddress = dto.getNeighborhoodAddress();
         this.phone = dto.getPhone();
+        this.status = dto.getStatus();
+        this.open = dto.getOpen();
         this.updatedAt = LocalDateTime.now();
     }
 }

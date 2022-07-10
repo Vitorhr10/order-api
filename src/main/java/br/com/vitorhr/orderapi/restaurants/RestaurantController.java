@@ -37,8 +37,8 @@ public class RestaurantController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteRestaurantsById(@PathVariable Long id) {
-        restaurantService.deleteRestaurantsById(id);
+    public void deleteRestaurantById(@PathVariable Long id) {
+        restaurantService.deleteRestaurantById(id);
     }
 
     @PatchMapping("/{id}")

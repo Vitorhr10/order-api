@@ -13,21 +13,23 @@ import lombok.NoArgsConstructor;
 public class RestautantResponseDto {
     private Long id;
     private String name;
-    private String openingHours;
     private Long zipCodeAddress;
     private String streetAddress;
     private String additionalAddress;
     private String neighborhoodAddress;
     private String phone;
+    private Integer status;
+    private Integer open;
 
     public RestautantResponseDto(RestaurantEntity restaurant) {
         this.id = restaurant.getId();
         this.name = restaurant.getName();
-        this.openingHours = restaurant.getOpeningHours();;
         this.zipCodeAddress = restaurant.getZipCodeAddress();
         this.streetAddress = restaurant.getStreetAddress();
         this.additionalAddress = restaurant.getAdditionalAddress();
         this.neighborhoodAddress = restaurant.getNeighborhoodAddress();
         this.phone = restaurant.getPhone();
+        this.status = restaurant.getStatus();
+        this.open = restaurant.getOpen();
     }
 }

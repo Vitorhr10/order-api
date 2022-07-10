@@ -17,10 +17,6 @@ public class CreateRestautantRequestDto {
     @Size(min = 3, max = 250, message = "Nome deve ter entre 3 a 250 caracteres.")
     private String name;
 
-    @NotNull(message = "Horário de funcionamento é um parametro obrigatório.")
-    @Size(min = 3, max = 250, message = "Horário de funcionamento deve ter entre 3 a 250 caracteres.")
-    private String openingHours;
-
     @NotNull(message = "Cep é um parametro obrigatório.")
     private Long zipCodeAddress;
 

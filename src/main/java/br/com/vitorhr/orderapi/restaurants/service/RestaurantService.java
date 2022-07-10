@@ -23,12 +23,13 @@ public class RestaurantService {
         RestaurantEntity restaurant = RestaurantEntity.builder()
                 .name(dto.getName())
                 .additionalAddress(dto.getAdditionalAddress())
-                .openingHours(dto.getOpeningHours())
                 .neighborhoodAddress(dto.getNeighborhoodAddress())
                 .zipCodeAddress(dto.getZipCodeAddress())
                 .phone(dto.getPhone())
                 .streetAddress(dto.getStreetAddress())
                 .createdAt(LocalDateTime.now())
+                .status(1)
+                .open(2)
                 .build();
         return restaurantRepository.save(restaurant);
     }
@@ -42,7 +43,7 @@ public class RestaurantService {
         return restaurantRepository.findById(id).orElseThrow(() -> new NotFoundException( "Restaurante não encontrado."));
     }
 
-    public void deleteRestaurantsById(Long id) {
+    public void deleteRestaurantById(Long id) {
         if(id  == null || id == 0) throw new BadRequestException("O identificador do restaurante é obrigatório.");
         restaurantRepository.deleteById(id);
     }
