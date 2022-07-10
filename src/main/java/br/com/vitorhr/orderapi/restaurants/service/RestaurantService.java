@@ -1,7 +1,7 @@
 package br.com.vitorhr.orderapi.restaurants.service;
 
 import br.com.vitorhr.orderapi.restaurants.dto.request.CreateRestautantRequestDto;
-import br.com.vitorhr.orderapi.restaurants.dto.response.RestautantResponseDto;
+import br.com.vitorhr.orderapi.restaurants.dto.request.UpdateResquestRestaurantDto;
 import br.com.vitorhr.orderapi.restaurants.entity.RestaurantEntity;
 import br.com.vitorhr.orderapi.restaurants.repository.RestaurantRepository;
 import br.com.vitorhr.orderapi.util.exception.BadRequestException;
@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 
@@ -47,4 +46,9 @@ public class RestaurantService {
         restaurantRepository.deleteById(id);
     }
 
+    public RestaurantEntity updateRestaurantById(Long id, UpdateResquestRestaurantDto dto) {
+        RestaurantEntity restaurant = findRestaurantsById(id);
+        restaurant.updateFromDto(dto);
+        return restaurantRepository.save(restaurant);
+    }
 }

@@ -1,14 +1,14 @@
 package br.com.vitorhr.orderapi.restaurants.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import br.com.vitorhr.orderapi.restaurants.dto.request.UpdateResquestRestaurantDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -46,4 +46,16 @@ public class RestaurantEntity {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @JsonIgnore
+    public void updateFromDto(UpdateResquestRestaurantDto dto) {
+        this.name = dto.getName();
+        this.openingHours = dto.getOpeningHours();
+        this.zipCodeAddress = dto.getZipCodeAddress();
+        this.streetAddress = dto.getStreetAddress();
+        this.additionalAddress = dto.getAdditionalAddress();
+        this.neighborhoodAddress = dto.getNeighborhoodAddress();
+        this.phone = dto.getPhone();
+        this.updatedAt = LocalDateTime.now();
+    }
 }
