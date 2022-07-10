@@ -4,12 +4,16 @@ import br.com.vitorhr.orderapi.restaurants.dto.request.CreateRestautantRequestDt
 import br.com.vitorhr.orderapi.restaurants.dto.response.RestautantResponseDto;
 import br.com.vitorhr.orderapi.restaurants.entity.RestaurantEntity;
 import br.com.vitorhr.orderapi.restaurants.repository.RestaurantRepository;
+import br.com.vitorhr.orderapi.util.exception.BadRequestException;
+import br.com.vitorhr.orderapi.util.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,8 +35,13 @@ public class RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
-    public Page<RestaurantEntity> getAllRestaurants(Pageable pageable) {
+    public Page<RestaurantEntity> findAllRestaurants(Pageable pageable) {
         return restaurantRepository.findAll(pageable);
+    }
+
+    public RestaurantEntity findRestaurantsById(Long id) {
+        if(id  == null || id == 0) throw new BadRequestException("O identificador do restaurante é obrigatório.");
+        return restaurantRepository.findById(id).orElseThrow(() -> new NotFoundException( "ID não encontrado na base de dados"));
     }
 
 }
