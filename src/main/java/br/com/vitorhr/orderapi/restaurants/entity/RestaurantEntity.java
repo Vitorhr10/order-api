@@ -1,11 +1,13 @@
 package br.com.vitorhr.orderapi.restaurants.entity;
 
+import br.com.vitorhr.orderapi.products.entity.ProductEntity;
 import br.com.vitorhr.orderapi.restaurants.dto.request.UpdateResquestRestaurantDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -49,6 +51,9 @@ public class RestaurantEntity {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<ProductEntity> products;
 
     @JsonIgnore
     public void updateFromDto(UpdateResquestRestaurantDto dto) {

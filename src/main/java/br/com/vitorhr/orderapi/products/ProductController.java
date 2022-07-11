@@ -19,10 +19,10 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @PostMapping
+    @PostMapping("/restaurant/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponseDto createProduct(@RequestBody @Valid CreateProductRequestDto dto) {
-        return new ProductResponseDto(productService.createProduct(dto));
+    public ProductResponseDto createProduct(@PathVariable Long id, @RequestBody @Valid CreateProductRequestDto dto) {
+        return new ProductResponseDto(productService.createProduct(id, dto));
     }
 
     @GetMapping

@@ -1,6 +1,7 @@
 package br.com.vitorhr.orderapi.products.entity;
 
 import br.com.vitorhr.orderapi.products.dto.request.UpdateResquestProductDto;
+import br.com.vitorhr.orderapi.restaurants.entity.RestaurantEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -38,6 +39,10 @@ public class ProductEntity {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private RestaurantEntity restaurant;
 
     @JsonIgnore
     public void updateFromDto(UpdateResquestProductDto dto) {
